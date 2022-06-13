@@ -10,4 +10,11 @@
 
 {% block content %}
 <p>{{post.content}}</p>
+<p><i>By {{first_name}} {{last_name}} at {{time}}</i></p>
+<form action="/posts/{{post.id}}/edit">
+    <button>Edit Post</button>
+</form>
+<form action="/posts/{{post.id}}/delete" method="post">
+    <button>Delete Post</button>
+</form>
 {% endblock %}

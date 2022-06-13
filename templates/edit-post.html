@@ -1,20 +1,17 @@
 {% extends "base.html" %}
 
 {% block title %}
-New Post
+Edit Post
 {% endblock %}
 
 {% block header %}
-Add a New Post for {{user.first_name}} {{user.last_name}}
+Edit Post: {{post.title}}
 {% endblock %}
 
 {% block content %}
-<form action="/{{user.id}}/posts/new" method="post">
+<form action="/posts/{{post.id}}/edit" method="post">
     <label for="title">Title</label><input type="text" name="title">
     <label for="content">Post Content</label><input type="text" name="content">
-    <button type="submit">Add</button>
-</form>
-<form action="/{{user.id}}">
-    <button type="submit">Cancel</button>
+    <button type="submit">Save Changes</button>
 </form>
 {% endblock %}

@@ -20,7 +20,7 @@ User: {{user.first_name}} {{user.last_name}}
     <h2>Posts</h2>
     <ul>
         {% for post in posts %}
-        <li><a href="/{{user.id}}/posts/{{post.id}}">{{post.title}}</a></li>
+        <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
         {% endfor %}
     </ul>
     <button type="submit">Add New Post</button>
