@@ -16,4 +16,14 @@ User: {{user.first_name}} {{user.last_name}}
 <form action="/{{user.id}}/delete-user" method="post">
     <button type="submit">Delete User</button>
 </form>
+<form action="/{{user.id}}/posts/new">
+    <h2>Posts</h2>
+    <ul>
+        {% for post in posts %}
+        <li><a href="/{{user.id}}/posts/{{post.id}}">{{post.title}}</a></li>
+        {% endfor %}
+    </ul>
+    <button type="submit">Add New Post</button>
+</form>
+
 {% endblock %}
