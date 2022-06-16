@@ -12,6 +12,15 @@ Add a New Post for {{user.first_name}} {{user.last_name}}
 <form action="/{{user.id}}/posts/new" method="post">
     <label for="title">Title</label><input type="text" name="title">
     <label for="content">Post Content</label><input type="text" name="content">
+
+    <h2>Tags:</h2>
+    <ul>
+        {% for tag in tags %}
+        <li>
+            <input type="checkbox" value={{tag.id}} name="included-tags"><label for="included-tags">{{tag.name}}</label>
+        </li>
+        {% endfor %}
+    </ul>
     <button type="submit">Add</button>
 </form>
 <form action="/{{user.id}}">

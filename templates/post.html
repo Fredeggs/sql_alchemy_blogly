@@ -11,6 +11,12 @@
 {% block content %}
 <p>{{post.content}}</p>
 <p><i>By {{first_name}} {{last_name}} at {{time}}</i></p>
+<p>
+    <b>Tags:</b>
+    {% for tag in tags %}
+    <a href="/tags/{{tag.id}}">{{tag.name}}</a> 
+    {% endfor %}
+</p>
 <form action="/posts/{{post.id}}/edit">
     <button>Edit Post</button>
 </form>

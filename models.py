@@ -43,3 +43,25 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     user = db.relationship("User", backref="posts")
+    tags = db.relationship("Tag", secondary="posts_tags", backref="posts")
+
+
+class Tag(db.Model):
+    """A Tag pertaining to Posts in the Blogly app"""
+
+    __tablename__ = "tags"
+
+    def __repr__(self):
+        t = self
+        return f"<Tag id={t.id}, name={t.name}>"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(25), unique=True)
+
+
+class PostTag(db.Model):
+
+    __tablename__ = "posts_tags"
+
+    post_id = db.Column(db.Integer, db.ForeignKey("posts.id"), primary_key=True)
+    tag_id = db.Column(db.Integer, db.ForeignKey("tags.id"), primary_key=True)
