@@ -26,6 +26,8 @@ class User(db.Model):
         default="https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg",
     )
 
+    post = db.relationship("Post", backref="user", cascade="all, delete-orphan")
+
 
 class Post(db.Model):
     """A Post for the Blogly app"""
@@ -42,7 +44,6 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
-    user = db.relationship("User", backref="posts")
     tags = db.relationship("Tag", secondary="posts_tags", backref="posts")
 
 
@@ -65,3 +66,6 @@ class PostTag(db.Model):
 
     post_id = db.Column(db.Integer, db.ForeignKey("posts.id"), primary_key=True)
     tag_id = db.Column(db.Integer, db.ForeignKey("tags.id"), primary_key=True)
+
+    tag = db.relationship("Tag", backref="post_tag")
+    post = db.relationship("Post", backref="post_tag")
